@@ -81,7 +81,7 @@ class MainScene: CCNode {
   
   // triggered whenever a touch is detected in the scene
   override func touchBegan(touch: CCTouch!, withEvent event: CCTouchEvent!) {
-    if gameState == .GameOver { return }  // Ignore if game state is game over
+    if gameState == .GameOver || gameState == .Title { return }  // Ignore if game state is game over
     if gameState == .Ready { start() }    // Trigger start animation
     
     if touch.locationInWorld().x < CCDirector.sharedDirector().viewSize().width / 2 {
@@ -109,7 +109,7 @@ class MainScene: CCNode {
     flyingPiece.side = obstacleSide
     
     // add to scene and animation starts
-    self.addChild(flyingPiece)
+    addChild(flyingPiece)
   }
   
   func stepTower() {
@@ -136,7 +136,7 @@ class MainScene: CCNode {
     
     if isGameOver() { return }      // checks for obstacle collision after tower stepped
     timeLeft = timeLeft + 0.25      // increments time
-    score++                         // increaments score
+    score++                         // increments score
   }
   
   func isGameOver() -> Bool {       // checks if current piece is on same side as character
@@ -155,14 +155,14 @@ class MainScene: CCNode {
     
     var gameOverScreen: GameOver = CCBReader.load("GameOver", owner: self) as! GameOver
     gameOverScreen.score = score    // set score for game over screen
-    self.addChild(gameOverScreen)   // drop down animation plays automatically
+    addChild(gameOverScreen)   // drop down animation plays automatically
   }
   
   func ready() {
     gameState = .Ready              // game state updated
     
     // show score/timer
-    self.animationManager.runAnimationsForSequenceNamed("Ready")
+    animationManager.runAnimationsForSequenceNamed("Ready")
     
     // fade in tap buttons
     tapButtons.cascadeOpacityEnabled = true

@@ -20,6 +20,6 @@ class Character: CCSprite {
   }
   
   func tap() {              // runs the swipe animation for character
-    self.animationManager.runAnimationsForSequenceNamed("Tap")
+    animationManager.runAnimationsForSequenceNamed("Tap")
   }
 }
