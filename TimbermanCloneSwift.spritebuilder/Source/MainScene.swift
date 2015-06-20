@@ -188,7 +188,7 @@ class MainScene: CCNode {
     var transition = CCTransition(fadeWithDuration: 0.3)
     
     // replace current scene with new scene to start game from beginning
-    CCDirector.sharedDirector().replaceScene(scene, withTransition: transition)
+    CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
   }
   
   override func update(delta: CCTime) {   // called before every frame before draw
