@@ -52,7 +52,7 @@ class MainScene: CCNode {
     // loops from 0 to 10 non-inclusive
     for i in 0..<10 {
       // loads a new pieces from CCB into piece var
-      var piece: Piece = CCBReader.load("Piece") as! Piece
+      var piece = CCBReader.load("Piece") as! Piece
       
       // sets up obstacle (chopstick) side
       pieceLastSide = piece.setObstacle(pieceLastSide)
@@ -98,7 +98,7 @@ class MainScene: CCNode {
   
   func addHitPiece(obstacleSide: Side) {
     // load in piece
-    var flyingPiece: Piece = CCBReader.load("Piece") as! Piece
+    var flyingPiece = CCBReader.load("Piece") as! Piece
     
     // place at bottom of tower
     flyingPiece.position = addPiecePosition!
@@ -153,7 +153,7 @@ class MainScene: CCNode {
   func triggerGameOver() {          // sets game state to GameOver and shows recap screen
     gameState = .GameOver
     
-    var gameOverScreen: GameOver = CCBReader.load("GameOver", owner: self) as! GameOver
+    var gameOverScreen = CCBReader.load("GameOver", owner: self) as! GameOver
     gameOverScreen.score = score    // set score for game over screen
     addChild(gameOverScreen)   // drop down animation plays automatically
   }
@@ -179,7 +179,7 @@ class MainScene: CCNode {
   
   func restart() {                  // triggered by restartButton set up in SpriteBuilder
     // load in new MainScene from CCB
-    var mainScene: MainScene = CCBReader.load("MainScene") as! MainScene
+    var mainScene = CCBReader.load("MainScene") as! MainScene
     mainScene.ready()
     
     var scene = CCScene()
