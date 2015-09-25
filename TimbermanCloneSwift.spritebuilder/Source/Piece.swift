@@ -27,7 +27,7 @@ class Piece: CCNode {
     if lastSide != .None {        // if last side was not none, set to None
       side = .None                // keeps unpassable state from occurring
     } else {
-      var rand = CCRANDOM_0_1()   // random value between 0 and 1
+      let rand = CCRANDOM_0_1()   // random value between 0 and 1
       if rand < 0.45 {
         side = .Left              // 45% of obstacle sides will be left
       } else if rand < 0.9 {
