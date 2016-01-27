@@ -52,7 +52,7 @@ class MainScene: CCNode {
     // loops from 0 to 10 non-inclusive
     for i in 0..<10 {
       // loads a new pieces from CCB into piece var
-      var piece = CCBReader.load("Piece") as! Piece
+      let piece = CCBReader.load("Piece") as! Piece
       
       // sets up obstacle (chopstick) side
       pieceLastSide = piece.setObstacle(pieceLastSide)
@@ -98,13 +98,13 @@ class MainScene: CCNode {
   
   func addHitPiece(obstacleSide: Side) {
     // load in piece
-    var flyingPiece = CCBReader.load("Piece") as! Piece
+    let flyingPiece = CCBReader.load("Piece") as! Piece
     
     // place at bottom of tower
     flyingPiece.position = addPiecePosition!
     
     // queue up correct animation based on which side character is on
-    var animationName = character.side == .Left ? "FromLeft" : "FromRight"
+    let animationName = character.side == .Left ? "FromLeft" : "FromRight"
     flyingPiece.animationManager.runAnimationsForSequenceNamed(animationName)
     flyingPiece.side = obstacleSide
     
@@ -114,7 +114,7 @@ class MainScene: CCNode {
   
   func stepTower() {
     // grab current piece
-    var piece = pieces[pieceIndex]
+    let piece = pieces[pieceIndex]
     
     // add in animated piece to fly away
     addHitPiece(piece.side)
@@ -128,7 +128,7 @@ class MainScene: CCNode {
     // randomizes obstacle side on piece
     pieceLastSide = piece.setObstacle(pieceLastSide)
     
-    var movePiecesDown = CCActionMoveBy(duration: 0.15, position: CGPoint(x: 0, y: -piece.contentSize.height))
+    let movePiecesDown = CCActionMoveBy(duration: 0.15, position: CGPoint(x: 0, y: -piece.contentSize.height))
     piecesNode.runAction(movePiecesDown)
     
     // increment pieceIndex so next piece will be checked on next stepTower
@@ -141,7 +141,7 @@ class MainScene: CCNode {
   
   func isGameOver() -> Bool {       // checks if current piece is on same side as character
     // grab current piece
-    var newPiece = pieces[pieceIndex]
+    let newPiece = pieces[pieceIndex]
     
     // checks if on same side as character, triggers game over
     if newPiece.side == character.side { triggerGameOver() }
@@ -153,7 +153,7 @@ class MainScene: CCNode {
   func triggerGameOver() {          // sets game state to GameOver and shows recap screen
     gameState = .GameOver
     
-    var gameOverScreen = CCBReader.load("GameOver", owner: self) as! GameOver
+    let gameOverScreen = CCBReader.load("GameOver", owner: self) as! GameOver
     gameOverScreen.score = score    // set score for game over screen
     addChild(gameOverScreen)   // drop down animation plays automatically
   }
@@ -179,13 +179,13 @@ class MainScene: CCNode {
   
   func restart() {                  // triggered by restartButton set up in SpriteBuilder
     // load in new MainScene from CCB
-    var mainScene = CCBReader.load("MainScene") as! MainScene
+    let mainScene = CCBReader.load("MainScene") as! MainScene
     mainScene.ready()
     
-    var scene = CCScene()
+    let scene = CCScene()
     scene.addChild(mainScene)
     
-    var transition = CCTransition(fadeWithDuration: 0.3)
+    let transition = CCTransition(fadeWithDuration: 0.3)
     
     // replace current scene with new scene to start game from beginning
     CCDirector.sharedDirector().presentScene(scene, withTransition: transition)
